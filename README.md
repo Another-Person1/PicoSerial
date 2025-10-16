@@ -1,5 +1,6 @@
 # PicoSerial
-When I was designing the FRC ESP32 DevKit Lite, I discovered a problem! The USB-Serial chip was too expensive (~$6 a piece)!
+When I was designing the FRC ESP32 DevKit Lite, I discovered a problem!
+The USB-Serial chip was too expensive (~$6 a piece)!
 This project aims to solve this problem in a cheap and effective way using a RP2350 (~$1.40 each) and its USB controller and serial functionality to replicate expensive converter chips but at a fraction of the price.
 
 The Raspberry Pi Debug Probe is a good product, but I found that it has a few improvements to be made.
