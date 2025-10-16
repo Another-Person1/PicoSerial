@@ -10,3 +10,41 @@ This is my journal of the design and building process of **PicoSerial**.
 You can view this journal in more detail on **Hack Club Blueprint** [here](https://blueprint.hackclub.com/projects/532).
 
 
+## 10/16/2025 - Brainstorming and schematic creation  
+
+Looking at the Raspberry Pi website, I saw the [Raspberry Pi Debug Probe](https://www.pishop.ca/product/raspberry-pi-debug-probe/).
+
+Does that make this project useless?
+
+As a matter of fact, no!
+
+The Debug Probe is a good product, but I found that it has a few improvements to be made.
+In addition to that, this project may be embedded in other future projects to replace the USB-Serial chip.
+
+1. The Debug Probe has a USB Micro-B connection, which is very fragile and inferior to USB-C
+2. It costs too much (~$17 each, which makes it prohibitively expensive to embed)
+3. For my purposes, I only need serial programming, not swd. (but swd/other debug protocols most likely can be added to this project using an addon board)
+4. This version is a USB-serial converter board, similar to [this one](https://www.adafruit.com/product/5335)
+5. The Debug Probe does not have a "FTDI" style 6 pin connector which is used on many devices, but instead has a 3 pin JST connector.
+- This works but does not have auto reset, so if the probe was used to program a microcontroller, buttons may need to be pressed in order to put it into the bootloader
+- For devices that use a 3 pin JST connector, another addon board or adapter cable could be made.
+- This version aims to have auto reset implemented to make end-users' lives more convenient
+
+However, this device will probably run the open-source Picoprobe software, made by Raspberry Pi, that the official Raspberry Pi Debug Probe uses.
+
+So, with all these improvements and changes, here is an initial schematic:
+
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MjQ5MywicHVyIjoiYmxvYl9pZCJ9fQ==--7f66b3815086de7769f4a3490d2e8191e5f95de6/image.png)
+
+Licensed under [CERN Open Hardware Licence Version 2 - Strongly Reciprocal](https://ohwr.org/cern_ohl_s_v2.txt)
+
+Features:
+- RP2350A
+- 2MB (or 16 Mbit) flash (enough to hold firmware)
+- Optional PSRAM soldering pads (for advanced hackers)
+- FTDI style output port
+- Header pins on the side for advanced GPIO usage
+- I2C and SPI broken out (through Qwiic/Stemma QT style connector and ISP connector respectively)
+- RP2350A SWD and TX RX broken out to Raspberry Pi Debug Connector specifications and a plain header respectively
+- more features coming soon!  
+
